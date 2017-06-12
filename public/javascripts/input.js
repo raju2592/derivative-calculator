@@ -9,19 +9,26 @@ function handleInput(inputFunction) {
         type: 'GET',
         data: {function: encodeURIComponent(inputFunction)},
         success: function(response) {
-            var html = '';
-            html += 'Derivative of the give function is ' + response.result;
-            html += '<br>';
-            for(var i = 0; i < response.story.length; i++) {
-                html += '<p>' + response.story[i] + '</p>' + '<br>'
+            if(response.status == 'success') {
+                var html = '';
+                html += 'I claim that, ' + response.result;
+                html += '<br>';
+                for(var i = 0; i < response.story.length; i++) {
+                    html += response.story[i] + '<br>';
+                }
+                $('#derivativeOutput').append(html);
+                $("#derivativeOutput").css("font-size","95%");
+                $("#derivativeOutput").css("color","black");
+                MathJax.Hub.Typeset();
+            } else {
+                $('#derivativeOutput').append('Can\'t understand, sorry :( :(');
+                $("#derivativeOutput").css("font-size","100%");
+                $("#derivativeOutput").css("color","red");
             }
-            $('#derivativeOutput').append(html);
-            $("#derivativeOutput").css("font-size","100%");
-            MathJax.Hub.Typeset();
             $('#function').removeAttr('disabled');
         },
         error: function(){
-
+            alert('Something Went Wrong!');
         },
     });
 }
@@ -32,4 +39,5 @@ $(document).ready(function() {
         var inputFunction = $('#function').val();
         handleInput(inputFunction);
     });
+    $('#inputForm').submit();
 });

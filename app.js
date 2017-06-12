@@ -24,11 +24,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render('view');
+    const input = [
+      '(1 + sin(x)) ^ 3',
+      'ln(sqrt(x) + 1)',
+      '10 * (x + tan(x))'
+    ][Math.floor(Math.random() * 3)];
+    res.render('view', { input });
 });
 
 app.get('/getDerivative', (req, res) => {
-    const inputFunction = req.query.function;
+    const inputFunction = decodeURIComponent(req.query.function);
     res.status(200).json(calculator.getDerivative(inputFunction));
 });
 
