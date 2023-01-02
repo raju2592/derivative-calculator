@@ -2,7 +2,7 @@
   "name": "derivtive-calculator",
   "version": "0.0.0",
   "private": true,
-  "source": "views/view.html",
+  "source": "views/index.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
