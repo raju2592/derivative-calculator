@@ -2,8 +2,10 @@
   "name": "derivtive-calculator",
   "version": "0.0.0",
   "private": true,
+  "source": "views/view.html",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -17,5 +19,8 @@
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
     "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2"
   }
 }
